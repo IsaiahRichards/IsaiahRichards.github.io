@@ -16,10 +16,10 @@ function setup() {
   //Initialize Variables
   player1X = 125;
   player2X = 125;
-  ai = true;
+  ai = false;
   playerSpeed = 3;
   aiSpeed = 1;
-  ballSpeedLimit = 10;
+  ballSpeedLimit = 3;
   
   
   //Border
@@ -29,12 +29,12 @@ function setup() {
   borderRight = createSprite(width - 5, 175, 10, height);
   
   //Objects
-  player1 = createSprite(player1X, 40, 50, 10);
+  player2 = createSprite(player1X, 40, 50, 10);
   //player1L = createSprite(player1X - 15, 40, 20, 10);
   //player1M = createSprite(player1X, 40, 10, 10);
   //player1R = createSprite(player1X + 15, 40, 20, 10);
   
-  player2 = createSprite(player2X, height - 40, 50, 10);
+  player1 = createSprite(player2X, height - 40, 50, 10);
   //player2L = createSprite(player2X - 15, height - 40, 20, 10);
   //player2M = createSprite(player2X, height - 40, 10, 10);
   //player2R = createSprite(player2X + 15, height - 40, 20, 10);
@@ -45,8 +45,8 @@ function setup() {
   goal2 = createSprite(width / 2, height - 15, 100, 10);
   
   //Ball Initialization
-  ballDirectionY = -3;
-  ballDirectionX = 0;
+  ballY = -3;
+  ballX = 0;
   
   
   
@@ -57,8 +57,8 @@ function draw() {
   background(0, 0, 100);
   drawSprites();
   
-  ball.position.y -= ballDirectionY;
-  ball.position.x -= ballDirectionX;
+  ball.position.y -= ballY;
+  ball.position.x -= ballX;
   
   //Player Initialization
   player1.position.x = player1X;
@@ -72,62 +72,62 @@ function draw() {
   //player2M.position.x = player2X;
     
   //Player 2 Collision
+   if (ball.bounce(player2)){
+    if(ballY < ballSpeedLimit){
+    ballY += .5;
+    }
+    ballY *= -1;
+  }
   if (ball.overlap(player2) && keyDown("d")){
-    ballDirectionX -= 1;
+    ballX -= 1;
   }
   if (ball.overlap(player2) && keyDown("a")){
-    ballDirectionX += 1;
+    ballX += 1;
   }
-    if (ball.overlap(player2)){
-    if(ballDirectionY < ballSpeedLimit){
-    ballDirectionY -= .5;
-    }
-    ballDirectionY *= -1;
-  }
+   
   
   //Player 1 Collision
+  if (ball.overlap(player1)){
+    if(-ballY < -ballSpeedLimit){
+    ballY -= .5;
+    }
+    ballY *= -1;
+  }
   if (ball.overlap(player1) && keyDown(RIGHT_ARROW)){
-    ballDirectionX -= -1;
-    ballDirectionY *= -1;
+    ballX -= 1;
   }
   if (ball.overlap(player1) && keyDown(LEFT_ARROW)){
-    ballDirectionX += 1;
-    ballDirectionY *= -1;
+    ballX += 1;
   }
-  if (ball.overlap(player1)){
-    if(ballDirectionY < -ballSpeedLimit){
-    ballDirectionY += .5;
-    }
-    ballDirectionY *= -1;
-  }
+  
   
   //Border Collision
   if (ball.overlap(borderBottom)){
-    ballDirectionY *= -1;
+    ballY *= -1;
   }
   if (ball.overlap(borderTop)){
-    ballDirectionY *= -1;
+    ballY *= -1;
   }
   if (ball.overlap(borderLeft)){
-    ballDirectionX *= -1;
+    ballX *= -1;
   }
-  if (ball.overlap(borderRight)){
-    ballDirectionX *= -1;
+  if (ball.bounce(borderRight)){
+    ballX *= -1;
   }
   
   //Goal Collision
   if(ball.overlap(goal1)){
     ball.remove();
-    ballDirectionX = 0;
-    ballDirectionY = 3;
+    ballX = 0;
+    ballY = 3;
     ball = createSprite(125, 175,10,10);
     player1X = 125;
     player2X = 125;
   }
   if(ball.overlap(goal2)){
     ball.remove();
-    ballDirectionX = 0;
-    ballDirectionY = -3;
+    ballX = 0;
+    ballY = -3;
     ball = createSprite(125, 175,10,10);
     player1X = 125;
     player2X = 125;
@@ -148,11 +148,11 @@ function draw() {
   }
   //Player AI
   if(ai == true){
-    if (player1X < ball.position.x && player1X < (width-35)){
-      player1X += aiSpeed;
+    if (player2X < ball.position.x && player2X < (width-35)){
+      player2X += aiSpeed;
     }
-    if(player1X > ball.position.x && player1X > 35){
-      player1X -= aiSpeed;
+    if(player2X > ball.position.x && player2X > 35){
+      player2X -= aiSpeed;
     }
   }
 }
