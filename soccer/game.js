@@ -21,6 +21,10 @@ function setup() {
   aiSpeed = 1;
   ballSpeedLimit = 3;
   
+  textAlign(CENTER, CENTER);
+  text("use arrow keys, or SPACE to stop", width/2);
+ 
+  
   
   //Border
   borderBottom = createSprite(width/2, 345, width, 10);
@@ -155,4 +159,5 @@ function draw() {
       player2X -= aiSpeed;
     }
   }
+   
 }

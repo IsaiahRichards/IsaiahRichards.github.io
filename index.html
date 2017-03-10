@@ -1,9 +1,95 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <a href="https://isaiahrichards.github.io/soccer">Soccer</a>
-  </body>
+    <head>
+        <title>Isaiah's Portfolio</title>
+        <style>
+        
+        @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+        @import url("http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css");
+
+
+            html, body{
+                height: 100%;
+            }
+            
+            body{
+                font: 14px/1 'Open Sans', sans-serif;
+                background: #eee;
+            }
+            main{
+                min-width: 320px;
+                max-width: 800px;
+                padding: 50px;
+                margin: 0 auto;
+                background: #fff;
+            }
+            
+            h1{
+              text-align: center;  
+            }
+            
+            section {
+                display: none;
+                padding: 20px 0 0;
+                border-top: 1px solid #ccc;
+            }
+            
+            
+            
+            input {
+                display: none;
+            }
+            
+            label{
+                display: inline-block;
+                margin: 0 0 -1px;
+                padding: 15px 25px;
+                font-weight: 600;
+                text-align: center;
+                color: #bbb;
+                border: 1px solid transparent;
+            }
+            
+            label:before {
+                font-family: fontawesome;
+                font-weight: normal;
+                margin-right: 10px;
+            }
+            
+            label[for*='0']:before {
+                content: '\f015';
+            }
+            
+            input:checked + label {
+                color: #555;
+                border: 1px solid #ccc;
+                border-top: 2px solid green;
+                border-bottom: 1px solid #fff;
+            }
+            
+            #tab0:checked ~ #content0,
+            #tab1:checked ~ #content1 {
+            display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Isaiah</h1>
+        <main>
+            <input id="tab0" type="radio" name="tabs" checked>
+            <label for="tab0">Home</label>
+            <input id="tab1" type="radio" name="tabs">
+            <label for="tab1">Soccer</label>
+            <section id = "content0">
+               <p>Welcome to my portfolio, on here you'll find some of the projects I've worked on or are currently working on.</p>
+            </section>
+            
+            <section id = "content1">
+                <h3>Controls:</h3>
+                 <h4>Player 1: left arrow = left | right arrow = right</h4>
+                 <h4>Player 2: a = left | d = right</h4>
+                 <a href="https://isaiahrichards.github.io/soccer">Play the Game Here!</a>
+                </section>
+        </main>
+    </body>
+    
 </html>
