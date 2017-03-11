@@ -58,6 +58,12 @@
             label[for*='0']:before {
                 content: '\f015';
             }
+            label[for*='1']:before {
+                content: '\f1e3';
+            }
+            label[for*='2']:before {
+                content: '\f121';
+            }
             
             input:checked + label {
                 color: #555;
@@ -67,7 +73,8 @@
             }
             
             #tab0:checked ~ #content0,
-            #tab1:checked ~ #content1 {
+            #tab1:checked ~ #content1,
+            #tab2:checked ~ #content2 {
             display: block;
             }
         </style>
@@ -79,6 +86,8 @@
             <label for="tab0">Home</label>
             <input id="tab1" type="radio" name="tabs">
             <label for="tab1">Soccer</label>
+             <input id="tab2" type="radio" name="tabs">
+            <label for="tab2">Programming Sites</label>
             <section id = "content0">
                <p>Welcome to my portfolio, on here you'll find some of the projects I've worked on or are currently working on.</p>
             </section>
@@ -89,6 +98,12 @@
                  <h4>Player 2: a = left | d = right</h4>
                  <a href="https://isaiahrichards.github.io/soccer">Play the Game Here!</a>
                 </section>
+                
+            <section id = "content2">
+                <p>This page is dedicated to keeping track of some of the useful programming related websites I've used in the past.</p>
+                <a href="https://www.webpagefx.com/web-design/html-ipsum/">HTML Format Lorem Ipsum Generator</a>
+                <a href="https://marcusman.com/">Best Java game development tutorials for free.</a>
+            </section>
         </main>
     </body>
     
